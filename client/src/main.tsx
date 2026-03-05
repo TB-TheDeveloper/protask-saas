@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { Auth0Provider } from "@auth0/auth0-react";
+import AppContextProvider from "./AppContextProvider.tsx";
 
 const domain = import.meta.env.VITE_AUTH_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH_CLIENT_ID;
@@ -17,7 +18,9 @@ createRoot(document.getElementById("root")!).render(
         audience: "https://protask-api",
       }}
     >
-      <App />
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
     </Auth0Provider>
   </StrictMode>,
 );

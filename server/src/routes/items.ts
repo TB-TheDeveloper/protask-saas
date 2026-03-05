@@ -1,25 +1,39 @@
 import { Router } from "express";
+import Product, { IProduct } from "../models/products";
 
 const router = Router();
 
-let items = [
-  {
-    id: 1,
-    name: "T-shirt",
-    price: 1999,
-    description: "Comfortable cotton tee",
-    stock: 10,
-  },
-  { id: 2, name: "Mug", price: 1299, description: "Ceramic mug", stock: 25 },
-];
-
-router.get("/", (req, res) => {
-  res.json(items);
+// GET all products
+router.get("/", async (_req, res) => {
+  try {
+    const products = await Product.find({ active: true });
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
-// router.get("/:id", (req, res) => {
-//     const id = Number(req.params.id);
-//     const item =
-// })
+// POST create a new product
+router.post("/", async (req, res) => {
+  try {
+    const { name, description, price, currency, imageUrl, stock } = req.body;
+
+    const newProduct: IProduct = new Product({
+      name,
+      description,
+      price,
+      currency: currency || "usd",
+      imageUrl,
+      stock,
+    });
+
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 export default router;
