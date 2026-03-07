@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import CartDrawer from "./components/CartDrawer";
 
 const Home = lazy(() => import("./pages/Home"));
-//const ProductPage = lazy(() => import("./pages/ProductPage"));
+const ProductPage = lazy(() => import("./pages/ProductsPage"));
 const Success = lazy(() => import("./pages/Success"));
 const Cancel = lazy(() => import("./pages/Cancel"));
 const App: React.FC = () => {
@@ -19,7 +19,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/" element={<Home />} />
-        {/* <Route path="/product/:id" element={<ProductPage />} /> */}
+        <Route path="/products" element={<ProductPage />} />
         <Route path="/success" element={<Success />} />
         <Route path="*" element={<Home />} />
       </Routes>

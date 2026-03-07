@@ -8,7 +8,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  imageUrls: string[];
   stock: number;
   active: boolean;
   createdAt: Date;

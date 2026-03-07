@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useCallback,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -30,6 +31,12 @@ interface AppProviderProps {
 const AppContextProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/items")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, [setProducts]);
 
   const addToCart = useCallback((product: Product) => {
     setCart((prev) => {

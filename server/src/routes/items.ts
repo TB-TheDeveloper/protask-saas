@@ -17,14 +17,14 @@ router.get("/", async (_req, res) => {
 // POST create a new product
 router.post("/", async (req, res) => {
   try {
-    const { name, description, price, currency, imageUrl, stock } = req.body;
+    const { name, description, price, currency, imageUrls, stock } = req.body;
 
     const newProduct: IProduct = new Product({
       name,
       description,
       price,
       currency: currency || "usd",
-      imageUrl,
+      imageUrls,
       stock,
     });
 
