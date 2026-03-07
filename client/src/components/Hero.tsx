@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative h-[80vh] flex items-center justify-center">
+    <section className="relative h-[60vh] flex items-center justify-center">
       <img
         src="https://images.unsplash.com/photo-1519741497674-611481863552"
         className="absolute inset-0 w-full h-full object-cover"

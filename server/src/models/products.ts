@@ -3,9 +3,9 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface IProduct extends Document {
   name: string;
   description: string;
-  price: number; // stored in cents
+  price: number;
   currency: string;
-  imageUrl: string;
+  imageUrls: string[];
   stock: number;
   active: boolean;
   createdAt: Date;
@@ -32,9 +32,9 @@ const ProductSchema = new Schema<IProduct>(
       type: String,
       default: "usd",
     },
-    imageUrl: {
-      type: String,
-      require: true,
+    imageUrls: {
+      type: [String],
+      required: true,
     },
     stock: {
       type: Number,
